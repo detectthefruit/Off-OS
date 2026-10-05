@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1e8">
+    <meta name="description" content="A small, offline-ready browser with a local web proxy.">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Off-OS Browser</title>
+  </head>
+  <body>
+    <main class="browser">
+      <header class="masthead">
+        <a class="wordmark" href="/" aria-label="Off-OS home"><span class="mark">o</span> off-os</a>
+        <div class="status"><span class="status-dot" id="status-dot"></span><span id="connection-status">Connecting</span></div>
+      </header>
+
+      <section class="toolbar" aria-label="Browser controls">
+        <div class="nav-controls">
+          <button class="icon-button" id="back-button" aria-label="Back" title="Back" disabled>←</button>
+          <button class="icon-button" id="forward-button" aria-label="Forward" title="Forward" disabled>→</button>
+          <button class="icon-button" id="home-button" aria-label="Home" title="Home">⌂</button>
+        </div>
+        <form class="address-form" id="address-form">
+          <span class="address-lock" aria-hidden="true">↗</span>
+          <input id="address" name="address" type="text" inputmode="url" autocomplete="url" spellcheck="false" placeholder="Search or enter an address" aria-label="Search or enter an address">
+          <button class="go-button" type="submit" aria-label="Go">↵</button>
+        </form>
+        <button class="icon-button bookmark-button" id="bookmark-button" aria-label="Bookmark page" title="Bookmark page" disabled>☆</button>
+      </section>
+
+      <section class="view" id="view" aria-label="Browser view">
+        <section class="home-screen" id="home-screen">
+          <div class="home-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> YOUR QUIETER CORNER OF THE WEB</p>
+            <h1>Go where<br>you <em>need.</em></h1>
+            <p class="intro">A little browser with a long memory. Pages you open can stay close, even when the connection doesn't.</p>
+          </div>
+          <div class="home-bottom">
+            <div class="section-heading"><span>Recent pages</span><button class="text-button" id="clear-history">Clear</button></div>
+            <div class="recent-list" id="recent-list"></div>
+            <div class="home-foot"><span>Local proxy · No accounts · No AI calls</span><span class="offline-note">Saved pages open offline</span></div>
+          </div>
+        </section>
+        <iframe class="page-frame" id="page-frame" title="Proxied web page" sandbox="allow-scripts allow-forms allow-downloads" referrerpolicy="no-referrer" hidden></iframe>
+        <section class="error-screen" id="error-screen" hidden>
+          <span class="error-symbol">!</span>
+          <h2>That page didn't come through.</h2>
+          <p id="error-message">Check the address or reconnect and try again.</p>
+          <button class="retry-button" id="retry-button">Try again <span>↗</span></button>
+        </section>
+      </section>
+      <footer class="browser-footer"><span id="page-label">READY WHEN YOU ARE</span><span>OFF-OS <span class="footer-separator">/</span> PRIVATE BY DEFAULT</span></footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
